@@ -1,0 +1,26 @@
+-----Bass-Base-----
+
+A facial recognition playlist creator.
+
+-------------------
+
+Facial Recognition
+	Image Processing from Camera Shots using Project Oxford
+		Detects Emotions
+		Outputs an aggregate emotional status for the party
+
+Spotify
+	Playlist selection
+		Smart song selection
+			Based on facial emotional status
+			Based on previous songs in playlist
+	Song voting
+		Skipping
+
+Backend
+	Python Flask
+	AWS
+	SQL Database
+
+Frontend
+	AngularJS
