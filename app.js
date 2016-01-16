@@ -22,7 +22,7 @@
 	exports.startApp = function() {
 		console.log('start app.');
 
-		var access_token = "c.oPExeHq4apmcPVgRHtPYXRLDwESaXw4OjLknx8mbYVBNVrd5mc1QXcZhDcQwMIDsnoZoBiE9nhU4Pquj5PGsyFIVN98IfiJM2ueqqgSTUTpXNvz5xipw3UbOpa4pzEuHKCY2R3ZYK5cbotad";
+		var access_token = "c.9zmGsiuHL6xx6VIWXZpgzgh78bbj97v9dI1oSwfLJbX1XbUbjoTAYYNXPgJMaojO5OHmzPndT6RjHTEZvNYfhxREU7cJ5SD9MKTXogEMmDZVbjCbJH8gHVgAFy1WvFTBipGmDb778OiQdjji";
 		var ref = new Firebase('wss://developer-api.nest.com');
 		ref.auth(access_token);
 		ref.on('value', function(snapshot) {
