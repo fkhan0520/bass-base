@@ -10,6 +10,15 @@
 		}
 	}
 
+	function checkFace() {
+	  	$.ajax({
+		  type: "POST",
+		  url: "main.py",
+		  data: { param: text}
+		}).done(function( o ) {
+		   // do something
+		});
+	}
 
 	exports.startApp = function() {
 		console.log('start app.');
