@@ -1,29 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-        <meta name="mobile-web-app-capable" content="yes">
-        <base target="_blank">
-        <title>Bass-Base</title>
-        <link rel = 'stylesheet' type = 'text/css' href='main.css'>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    </head>
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="fuzzyset.js"></script>
+<script type="text/javascript" src="wordcache.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
+<style type="text/css">
 
-    <body>
+    .jumbotron {
+        background-color: #333;
+        color: #fff;
+    }
 
-        <div id="container">
+    .jumbotron p {
+        color: #aaa;
+    }
 
-            <video autoplay></video>
+    .jumbotron a {
+        color: #fff;
+    }
 
+</style>
+</head>
+<body onload="startApp()">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h2>Nest Security Essentials</h2>
+            <p>
+                Scare off intruders by dropping sick beats.
+            </p>
         </div>
-        <div>
-            <button id = 'take_picture'>Take Picture</button>
-        </div>
-        <div id = "canvas_container">
-            <canvas></canvas>
-        </div>
-        <script src="js/main.js"></script>
+    </div>
 
-    </body>
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    picture of intruder goes here
+                </p>
+                <div id="status"></div>
+            </div>
+            <div class="col-md-6">
+                <h2>Here's the song to play</h2>
+                <div id="play">ggg</div>    
+            </div>
+        </div>
+    </div>
+</body>
 </html>
