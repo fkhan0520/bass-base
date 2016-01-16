@@ -1,6 +1,21 @@
 import requests
 import json
 
+def get_detected_face_id(image_url):
+	url = "https://api.projectoxford.ai/face/v1.0/detect" 
+	data = { "url": image_url}
+	headers = {"Content-Type": "application/json", "Ocp-Apim-Subscription-Key": "902567b4f75743ae8e039d37f9aeb972"}
+	r = requests.post(url, params = None, data = json.dumps(data), headers = headers)
+	return r.text
+
+def is_face_match(faceId1, faceId2):
+	url = "https://api.projectoxford.ai/face/v1.0/verify" 
+	data = { "faceId1": faceId1, "faceId2": faceId2}
+	headers = {"Content-Type": "application/json", "Ocp-Apim-Subscription-Key": "902567b4f75743ae8e039d37f9aeb972"}
+	r = requests.post(url, params = None, data = json.dumps(data), headers = headers)
+	return r.text
+
+# returns face rectangle corners, dict of emotions to scores
 def get_emotion_values(image_url):
 	url = "https://api.projectoxford.ai/emotion/v1.0/recognize" 
 	data = { "url": image_url}
