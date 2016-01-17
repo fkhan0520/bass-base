@@ -4,22 +4,23 @@
 		if (intruderStatus) {
 			$('#play').html(
 				'<audio controls autoplay>' +
-  					'<source src="mp3/cops.mp3" type="audio/mpeg">' +
+  					'<source src="cops.mp3" type="audio/mpeg">' +
 				'</audio>'
 			);
 		}
 	}
 
-	// function checkFace() {
-	//   	$.ajax({
-	// 	  type: "POST",
-	// 	  script: "main.py",
-	// 	  success: function(data,status){
-	// 	   // do something in js
-	// 	});
-	// }
+	function checkFace(faceThing) {
+	  	$.ajax({
+		  type: "POST",
+		  url: "/movement/"+faceThing,
+		  success: function(data,status){
+		   console.log(data);
+		   return data;
+		});
+	}
 
-	
+
 
 	exports.startApp = function() {
 		console.log('start app.');
@@ -28,14 +29,19 @@
 		var ref = new Firebase('wss://developer-api.nest.com');
 		ref.auth(access_token);
 		ref.on('value', function(snapshot) {
-			console.log(snapshot.val());
 			var jsonThing = snapshot.val().devices.cameras['_piRisli3AVbF249MOnd7TfxFGotw7-JHWErCeEm4vyKybMgyjpLWA'].last_event.animated_image_url;
 			$('#mug').html(
 				'<img src='+jsonThing+' style="width:550px;height:350px;">'
 			)
-		});
+			var faceThing = snapshot.val().devices.cameras['_piRisli3AVbF249MOnd7TfxFGotw7-JHWErCeEm4vyKybMgyjpLWA'].last_event.image_url;
+			console.log(faceThing);
+			if (!checkFace(faceThing)) {
+				playSong(true);
+			} else {
+				break;
+			}
 
-		playSong(true);
+		});
 	}
 
 })(window);
