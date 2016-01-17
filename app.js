@@ -19,6 +19,8 @@
 	// 	});
 	// }
 
+	
+
 	exports.startApp = function() {
 		console.log('start app.');
 
@@ -26,7 +28,11 @@
 		var ref = new Firebase('wss://developer-api.nest.com');
 		ref.auth(access_token);
 		ref.on('value', function(snapshot) {
-		console.log(snapshot.val());
+			console.log(snapshot.val());
+			var jsonThing = snapshot.val().devices.cameras['_piRisli3AVbF249MOnd7TfxFGotw7-JHWErCeEm4vyKybMgyjpLWA'].last_event.animated_image_url;
+			$('#mug').html(
+				'<img src='+jsonThing+' style="width:550px;height:350px;">'
+			)
 		});
 
 		playSong(true);
