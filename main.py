@@ -3,6 +3,7 @@ import requests
 import json
 import jinja2
 import pickle
+import os
 
 app = Flask(__name__, static_url_path='')
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -30,20 +31,20 @@ def is_face_match(faceId1, faceId2):
 	r = requests.post(url, params = None, data = json.dumps(data), headers = headers)
 	return r.text
 
-@app.route('/<path:path>')
-def send_videos(path):
-	print "sending static stuff: " + path
-	return send_from_directory(path)
+# @app.route('/<path:path>')
+# def send_videos(path):
+# 	print "sending static stuff: " + path
+# 	return send_from_directory(path)
 
-# @app.route('/js/<path:path>')
-# def send_js(path):
-#     print "sending js"
-#     return send_from_directory('js', path)
+@app.route('/js/<path:path>')
+def send_js(path):
+    print "sending js"
+    return send_from_directory('js', path)
 
-# @app.route('/css/<path:path>')
-# def send_css(path):
-#     print "sending css"
-#     return send_from_directory('css', path)
+@app.route('/mp3/<path:path>')
+def send_css(path):
+    print "sending mp3"
+    return send_from_directory('mp3', path)
 
 # @app.route('/pics/<path:path>')
 # def send_jpg(path):
