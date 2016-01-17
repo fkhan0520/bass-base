@@ -10,16 +10,16 @@
 		}
 	}
 
-	// function checkFace() {
-	//   	$.ajax({
-	// 	  type: "POST",
-	// 	  script: "main.py",
-	// 	  success: function(data,status){
-	// 	   // do something in js
-	// 	});
-	// }
+	function checkFace(faceThing) {
+	  	$.ajax({
+		  type: "POST",
+		  url: "/movement/"+faceThing,
+		  success: function(data,status){
+		   console.log(data);
+		});
+	}
 
-	
+
 
 	exports.startApp = function() {
 		console.log('start app.');
@@ -33,9 +33,14 @@
 			$('#mug').html(
 				'<img src='+jsonThing+' style="width:550px;height:350px;">'
 			)
-		});
+			var faceThing = snapshot.val().devices.cameras['_piRisli3AVbF249MOnd7TfxFGotw7-JHWErCeEm4vyKybMgyjpLWA'].last_event.image_url;
+			if (checkFace(faceThing)) {
+				playSong(true);
+			} else {
+				break;
+			}
 
-		playSong(true);
+		});
 	}
 
 })(window);
