@@ -38,7 +38,7 @@
 			var splitted = faceThing.split('/');
 			console.log(splitted);
 			console.log(faceThing);
-			if ("False" == checkFace(splitted[5], splitted[6])) {
+			if ("False" == checkFace("http://i4.mirror.co.uk/incoming/article5744325.ece/ALTERNATES/s615/MAIN-Kanye-West.jpg", "http://media.gq.com/photos/5592fee87cc23bc8642421f0/master/w_840/rotators-2014-07-kanye-west-sidebar-2014-200.jpg")) {
 				playSong(true);
 			} 
 		});
