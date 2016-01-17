@@ -72,7 +72,7 @@ def on_movement(image_url):
 		if is_face_match(face, faceId):
 			new = False
 			break
-	if !new:
+	if not new:
 		return True
 
 if __name__ == "__main__":
