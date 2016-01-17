@@ -17,7 +17,7 @@
 		  success: function(data,status){
 		   console.log(data);
 		   return data;
-		});
+		  }});
 	}
 
 

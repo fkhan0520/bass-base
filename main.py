@@ -62,7 +62,7 @@ def add_face(image_url):
 			break
 	if new:
 		knownFaces.append(faceId)
-		pickle.dump(knownFaces, f)
+		pickle.dump(knownFaces, open(f, 'w'))
 
 @app.route('/movement/<image_url>')
 def on_movement(image_url):
@@ -72,12 +72,14 @@ def on_movement(image_url):
 	for face in knownFaces:
 		if is_face_match(face, faceId):
 			new = False
+			print "new face"
 			break
 	if not new:
+		print "not new face"
 		return True
 
 if __name__ == "__main__":
 	port = int(os.environ.get('PORT', 5000))
-    	app.run(host='0.0.0.0', port=port, debug=True)
+    	app.run(debug=True)
 
 #print get_detected_face_id("http://snappa.static.pressassociation.io/assets/2015/06/26090251/1435305770-36a7c3951a2bb484f033814ee652156a-600x398.jpg")
