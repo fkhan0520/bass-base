@@ -51,7 +51,7 @@ def send_css(path):
 # 	print "sending jpg"
 # 	return send_from_directory('pics', path)
 
-@app.route('/add/image_url')
+@app.route('/add/<image_url>')
 def add_face(image_url):
 	faceId = get_detected_face_id(image_url)
 	knownFaces = pickle.load(f)
@@ -64,7 +64,7 @@ def add_face(image_url):
 		knownFaces.append(faceId)
 		pickle.dump(knownFaces, f)
 
-@app.route('/movement/image_url')
+@app.route('/movement/<image_url>')
 def on_movement(image_url):
 	faceId = get_detected_face_id(image_url)
 	knownFaces = pickle.load(f)
