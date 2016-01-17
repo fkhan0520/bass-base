@@ -11,6 +11,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 f = "knownFaces.p"
+urlPrefix = "https://www.dropcam.com/api/wwn.get_image/"
 
 @app.route('/')
 def index():
@@ -22,6 +23,12 @@ def get_detected_face_id(image_url):
 	data = { "url": image_url}
 	headers = {"Content-Type": "application/json", "Ocp-Apim-Subscription-Key": "c1e6a2a46d7a4160829390d5de36b68c"}
 	r = requests.post(url, params = None, data = json.dumps(data), headers = headers)
+	print r.json()
+	print "asd;lkfj;aldskjf;laksdjf;lkajsd;lfkj"
+	if len(r.json()) == 0:
+		return -1
+	if "error" in r.json():
+		return -1
 	return r.json()[0]["faceId"]
 
 def is_face_match(faceId1, faceId2):
@@ -64,9 +71,12 @@ def add_face(image_url):
 		knownFaces.append(faceId)
 		pickle.dump(knownFaces, open(f, 'w'))
 
-@app.route('/movement/<image_url>')
-def on_movement(image_url):
-	faceId = get_detected_face_id(image_url)
+@app.route('/movement/<image_url1>/<image_url2>', methods=['POST'])
+def on_movement(image_url1, image_url2):
+	newUrl = urlPrefix + image_url1 + "/" + image_url2
+	faceId = get_detected_face_id(newUrl)
+	if faceId == -1:
+		return "False"
 	knownFaces = pickle.load(f)
 	new = True
 	for face in knownFaces:
@@ -76,7 +86,8 @@ def on_movement(image_url):
 			break
 	if not new:
 		print "not new face"
-		return True
+		return "True"
+	return "False"
 
 if __name__ == "__main__":
 	port = int(os.environ.get('PORT', 5000))

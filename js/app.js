@@ -4,16 +4,16 @@
 		if (intruderStatus) {
 			$('#play').html(
 				'<audio controls autoplay>' +
-  					'<source src="cops.mp3" type="audio/mpeg">' +
+  					'<source src="mp3/cops.mp3" type="audio/mpeg">' +
 				'</audio>'
 			);
 		}
 	}
 
-	function checkFace(faceThing) {
+	function checkFace(faceThing1, faceThing2) {
 	  	$.ajax({
 		  type: "POST",
-		  url: "/movement/"+faceThing,
+		  url: "/movement/"+faceThing1+"/"+faceThing2,
 		  success: function(data,status){
 		   console.log(data);
 		   return data;
@@ -34,8 +34,11 @@
 				'<img src='+jsonThing+' style="width:550px;height:350px;">'
 			)
 			var faceThing = snapshot.val().devices.cameras['_piRisli3AVbF249MOnd7TfxFGotw7-JHWErCeEm4vyKybMgyjpLWA'].last_event.image_url;
+			
+			var splitted = faceThing.split('/');
+			console.log(splitted);
 			console.log(faceThing);
-			if (!checkFace(faceThing)) {
+			if ("False" == checkFace(splitted[5], splitted[6])) {
 				playSong(true);
 			} 
 		});
