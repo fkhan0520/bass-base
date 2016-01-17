@@ -37,10 +37,7 @@
 			console.log(faceThing);
 			if (!checkFace(faceThing)) {
 				playSong(true);
-			} else {
-				break;
-			}
-
+			} 
 		});
 	}
 
